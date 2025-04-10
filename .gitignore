@@ -1,68 +1,47 @@
-# Flutter/Dart/Pub related
+# Flutter/Dart/Pub stuff
 .dart_tool/
 .packages
 .pub-cache/
 build/
 flutter_*.png
-generated_plugin_registrant.dart
-
-# Android
-android/.gradle/
-android/.idea/
-android/local.properties
-android/app/debug
-android/app/profile
-android/app/release
 *.iml
-*.apk
-*.aar
-*.jks
+*.ipr
+*.iws
 
-# iOS
+# IDE settings
+.vscode/
+.idea/
+
+# Generated plugin and dependency files
+.flutter-plugins
+.flutter-plugins-dependencies
+.metadata
+
+# macOS and Xcode
 ios/Flutter/Flutter.framework
 ios/Flutter/Flutter.podspec
-ios/.generated/
-ios/Pods/
 ios/.symlinks/
+ios/Pods/
 ios/Runner.xcworkspace/
-ios/Runner.xcodeproj/project.xcworkspace/
 ios/build/
-ios/DerivedData/
-*.xcuserstate
-
-# Xcode
-*.xcworkspace
-*.xcuserstate
-*.xcodeproj/project.xcworkspace
-*.xcodeproj/xcuserdata/
-
-# macOS
-macos/Flutter/ephemeral/
 macos/Pods/
 macos/.symlinks/
 macos/build/
-*.xcworkspace
-*.xcuserstate
 
-# Web
-build/web/
-
-# Windows
-windows/Flutter/ephemeral/
+# Linux/Windows
+linux/flutter/
+linux/build/
+windows/flutter/
 windows/build/
 
-# Linux
-linux/Flutter/ephemeral/
-linux/build/
+# Web
+web/.dart_tool/
+web/build/
 
-# IntelliJ related
-.idea/
-*.iml
-
-# VS Code
-.vscode/
-
-# Others
-.env
+# Logs & outputs
 *.log
-*.tmp
+pubspec.lock # optional — ignore only for libraries, not apps
+
+# Environment files
+.env
+.env.*
