@@ -89,6 +89,10 @@ Make sure a connected device or emulator is running. Accept location permissions
 
 ### 🚧 Core Features (In Progress)
 
+- [ ] **Populate DB with POIs based on user location (cache-aware)**  
+       - Check if POIs for the current region already exist in Supabase  
+       - Only call external API if location is new or data is stale  
+       - Store fetched POIs in DB for reuse
 - [ ] **Add loading and error states** for smoother UX
 - [ ] **Display distance** from user to each adventure
 - [ ] **Create “Add Adventure” form** with GPS autofill
