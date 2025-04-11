@@ -40,7 +40,7 @@ web/build/
 
 # Logs & outputs
 *.log
-pubspec.lock # optional — ignore only for libraries, not apps
+pubspec.lock
 
 # Environment files
 .env
