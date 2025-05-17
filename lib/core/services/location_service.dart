@@ -26,7 +26,14 @@ class LocationService {
       );
     }
 
+    final LocationSettings locationSettings = LocationSettings(
+      accuracy: LocationAccuracy.best,
+      distanceFilter: 100,
+    );
+
     // Location services are enabled and proper permissions are granted
-    return await Geolocator.getCurrentPosition();
+    return await Geolocator.getCurrentPosition(
+      locationSettings: locationSettings,
+    );
   }
 }

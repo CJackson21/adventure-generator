@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:adventure_app/logic/adventure_loader.dart';
-import 'package:adventure_app/widgets/adventure_display.dart';
+import 'package:adventure_app/core/widgets/adventure_display.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});

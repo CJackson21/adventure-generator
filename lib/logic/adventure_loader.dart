@@ -1,6 +1,6 @@
 import 'dart:developer';
-import 'package:adventure_app/services/location_service.dart';
-import 'package:adventure_app/services/activity_service.dart';
+import 'package:adventure_app/core/services/location_service.dart';
+import 'package:adventure_app/core/services/activity_service.dart';
 
 class AdventureLoader {
   static Future<Map<String, dynamic>?> load() async {

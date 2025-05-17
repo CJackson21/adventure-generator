@@ -1,4 +1,4 @@
-# 🌄 Adventure App
+# 🌄 GoVentures
 
 A mobile Flutter app that finds random nearby adventures based on your current GPS location. Powered by Supabase, geolocation, and clean architecture.
 
