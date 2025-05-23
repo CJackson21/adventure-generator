@@ -80,7 +80,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 return Divider(
                   indent: 20,
                   endIndent: 20,
-                  color: Colors.grey.withOpacity(0.3),
+                  color: Colors.grey.withValues(alpha: 0.3),
                 );
               },
             ),
