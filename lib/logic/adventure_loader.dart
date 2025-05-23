@@ -10,8 +10,6 @@ class AdventureLoader {
         userLatitude: position.latitude,
         userLongitude: position.longitude,
       );
-      print(position);
-      print(activity);
       return activity;
     } catch (error) {
       log('Error loading adventure: $error');
