@@ -1,3 +1,4 @@
+// lib/widgets/layout.dart (or your chosen path)
 import 'package:flutter/material.dart';
 
 class Layout extends StatelessWidget {
