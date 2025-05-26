@@ -4,7 +4,6 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 class ActivityService {
   final supabase = Supabase.instance.client;
 
-  /// Fetch all activities (for admin/testing, optional)
   Future<List<Map<String, dynamic>>> getAllActivities() async {
     final response = await supabase
         .from('activities')
@@ -13,46 +12,68 @@ class ActivityService {
     return List<Map<String, dynamic>>.from(response);
   }
 
-  /// Get a random activity within a specified distance
-  Future<Map<String, dynamic>?> getRandomActivityNearby({
+  Future<List<Map<String, dynamic>>> getActivitiesNearby({
     required double userLatitude,
     required double userLongitude,
     double maxDistanceMi = 10.0,
   }) async {
-    final response = await supabase.from('activities').select();
-    final all = List<Map<String, dynamic>>.from(response);
+    // Fetch all activities
+    // TODO: optimize later
+    final allActivities = await getAllActivities();
 
-    final nearby =
-        all.where((activity) {
-          final double lat = double.tryParse('${activity['latitude']}') ?? 0;
-          final double long = double.tryParse('${activity['longitude']}') ?? 0;
+    final nearbyActivities =
+        allActivities.where((activity) {
+          // Ensure latitude and longitude are not null and are valid doubles
+          final double? lat =
+              activity['latitude'] is double
+                  ? activity['latitude']
+                  : double.tryParse(activity['latitude'].toString());
+          final double? lon =
+              activity['longitude'] is double
+                  ? activity['longitude']
+                  : double.tryParse(activity['longitude'].toString());
+
+          if (lat == null || lon == null) {
+            print(
+              'Warning: Skipping activity with invalid coordinates: ${activity['name'] ?? 'Unknown'}',
+            );
+            return false; // Skip if coordinates are invalid
+          }
 
           final distance = _calculateDistance(
             userLatitude,
             userLongitude,
             lat,
-            long,
+            lon,
           );
-
-          print('📍 $lat, $long → distance = $distance mi');
-
           return distance <= maxDistanceMi;
         }).toList();
 
-    print('🎯 Nearby count: ${nearby.length}');
+    return nearbyActivities;
+  }
+
+  Future<Map<String, dynamic>?> getRandomActivityNearby({
+    required double userLatitude,
+    required double userLongitude,
+    double maxDistanceMi = 10.0,
+  }) async {
+    final nearby = await getActivitiesNearby(
+      userLatitude: userLatitude,
+      userLongitude: userLongitude,
+      maxDistanceMi: maxDistanceMi,
+    );
 
     if (nearby.isEmpty) return null;
     return nearby[Random().nextInt(nearby.length)];
   }
 
-  /// Haversine distance calculation (in miles)
   double _calculateDistance(
     double latitude1,
     double longitude1,
     double latitude2,
     double longitude2,
   ) {
-    const earthRadius = 3963.1;
+    const earthRadius = 3963.1; // Earth radius in miles
     final deltaLat = _degreesToRadians(latitude2 - latitude1);
     final deltaLon = _degreesToRadians(longitude2 - longitude1);
 
